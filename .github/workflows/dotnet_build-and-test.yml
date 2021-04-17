@@ -1,24 +1,30 @@
-name: dotnet_build-and-test
+name: dotnet build and test by working dir
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      workingdir:
+        description: 'Working directory for the dotnet solution'
+        required: true
+        default: './dotnet/libs-and-tests'
 
 jobs:
-  build-and-test:
+  build:
 
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./dotnet/build-and-test
+        working-directory: ${{ github.event.inputs.workingdir }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
