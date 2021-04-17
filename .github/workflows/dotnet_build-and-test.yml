@@ -1,13 +1,9 @@
-name: .NET
+name: dotnet_build-and-test
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: workflow_dispatch
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
     defaults:
