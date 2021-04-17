@@ -6,14 +6,11 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            string input;
-            do
+            for (int i = 0; i < args.Length; i++)
             {
-                input = Console.ReadLine();
-                Console.WriteLine($"Input was: {input}");
-            } while (!string.IsNullOrWhiteSpace(input));
-
-            Console.WriteLine("Input was empty, stopping...");
+                Console.WriteLine($"Input was: {args[i]}");
+            }
+            Console.WriteLine("No more arguments, stopping...");
         }
     }
 }
