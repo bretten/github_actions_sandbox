@@ -43,7 +43,7 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Run
-        run: dotnet run ${{ github.event.inputs.project }}
+        run: dotnet run --project ${{ github.event.inputs.project }}
       - name: Console Input 1
         run: ${{ github.event.inputs.console_input_1 }}
       - name: Console Input 2
