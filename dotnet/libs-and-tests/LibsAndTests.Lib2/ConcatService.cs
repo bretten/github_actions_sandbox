@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace buildAndTest.Lib2
+namespace LibsAndTests.Lib2
 {
     public class ConcatService
     {

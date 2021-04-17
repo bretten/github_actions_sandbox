@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildAndTest.Lib1", "buildAndTest.Lib1\buildAndTest.Lib1.csproj", "{5C369F6A-A6DD-48AD-9374-39FB51480E0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibsAndTests.Lib1", "LibsAndTests.Lib1\LibsAndTests.Lib1.csproj", "{5C369F6A-A6DD-48AD-9374-39FB51480E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildAndTest.Tests1", "buildAndTest.Tests1\buildAndTest.Tests1.csproj", "{3471D370-16B4-462F-8532-4110F99D83D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibsAndTests.Tests1", "LibsAndTests.Tests1\LibsAndTests.Tests1.csproj", "{3471D370-16B4-462F-8532-4110F99D83D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildAndTest.Lib2", "buildAndTest.Lib2\buildAndTest.Lib2.csproj", "{776E10D6-5B2B-480C-9880-F4D6EFFA363D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibsAndTests.Lib2", "LibsAndTests.Lib2\LibsAndTests.Lib2.csproj", "{776E10D6-5B2B-480C-9880-F4D6EFFA363D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buildAndTest.Tests2", "buildAndTest.Tests2\buildAndTest.Tests2.csproj", "{6AEC32D5-B07D-4FB7-B313-22DEFB33F346}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibsAndTests.Tests2", "LibsAndTests.Tests2\LibsAndTests.Tests2.csproj", "{6AEC32D5-B07D-4FB7-B313-22DEFB33F346}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

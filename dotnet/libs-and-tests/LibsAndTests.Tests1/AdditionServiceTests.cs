@@ -1,8 +1,8 @@
-﻿using buildAndTest.Lib1;
+﻿using LibsAndTests.Lib1;
 using FluentAssertions;
 using Xunit;
 
-namespace buildAndTest.Tests1
+namespace LibsAndTests.Tests1
 {
     public class AdditionServiceTests
     {

@@ -1,4 +1,4 @@
-﻿namespace buildAndTest.Lib1
+﻿namespace LibsAndTests.Lib1
 {
     public class AdditionService
     {

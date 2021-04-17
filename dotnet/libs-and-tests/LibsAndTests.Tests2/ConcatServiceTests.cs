@@ -1,8 +1,8 @@
-﻿using buildAndTest.Lib2;
+﻿using LibsAndTests.Lib2;
 using FluentAssertions;
 using Xunit;
 
-namespace buildAndTest.Tests2
+namespace LibsAndTests.Tests2
 {
     public class ConcatServiceTests
     {
