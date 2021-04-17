@@ -1,0 +1,52 @@
+﻿name: dotnet run by working dir
+
+on:
+  workflow_dispatch:
+    inputs:
+      workingdir:
+        description: 'Working directory for the dotnet solution'
+        required: true
+        default: './dotnet/console-app'
+      project:
+        description: 'The project to run'
+        required: true
+        default: 'ConsoleApp'
+      console_input_1:
+        description: 'Input #1 for the console app'
+        required: true
+        default: 'input value 1'
+      console_input_2:
+        description: 'Input #2 for the console app'
+        required: true
+        default: 'input value 2'
+      console_input_3:
+        description: 'Input #3 for the console app'
+        required: true
+        default: 'input value 3'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.workingdir }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Run
+        run: dotnet run ${{ github.event.inputs.project }}
+      - name: Console Input 1
+        run: ${{ github.event.inputs.console_input_1 }}
+      - name: Console Input 2
+        run: ${{ github.event.inputs.console_input_2 }}
+      - name: Console Input 3
+        run: ${{ github.event.inputs.console_input_3 }}
