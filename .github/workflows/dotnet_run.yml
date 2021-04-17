@@ -44,7 +44,7 @@ jobs:
         run: dotnet build --no-restore
       - name: Run
         run: |
-          dotnet run --project ${{ github.event.inputs.project }}
+          dotnet run --interactive --project ${{ github.event.inputs.project }}
           ${{ github.event.inputs.console_input_1 }}
           ${{ github.event.inputs.console_input_2 }}
           ${{ github.event.inputs.console_input_3 }}
