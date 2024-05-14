@@ -30,12 +30,12 @@ namespace LibsAndTests.Tests2
             var actual = PstNow();
 
             // Assert
-            Console.WriteLine("actual " + actual.ToString());
+            Console.WriteLine($"actual {actual.ToString()}, {actual.Offset}");
             var pstNow = DateTime.UtcNow.AddHours(-7);
-            Console.WriteLine("pstNow " + pstNow.ToString());
+            Console.WriteLine($"pstNow  {pstNow.ToString()}, {pstNow.Kind}");
             var pstNowOffset = new DateTimeOffset(DateOnly.FromDateTime(pstNow), TimeOnly.FromDateTime(pstNow),
                 TimeSpan.FromHours(-7));
-            Console.WriteLine("pstNowOffset " + pstNowOffset.ToString());
+            Console.WriteLine($"pstNowOffset  {pstNowOffset.ToString()}, {pstNowOffset.Offset}");
             var timeDifference = pstNowOffset - actual;
             Assert.InRange(timeDifference.TotalMilliseconds, 0, 50);
         }
@@ -44,7 +44,8 @@ namespace LibsAndTests.Tests2
         {
             var tzInfo = TimeZoneInfo.FindSystemTimeZoneById("America/Los_Angeles");
             Console.WriteLine($"ID: {tzInfo?.Id}, offset: {tzInfo?.BaseUtcOffset.TotalHours}");
-            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tzInfo);
+            var a = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tzInfo);
+            return new DateTimeOffset(a, TimeSpan.FromHours(-7));
         }
     }
 }
