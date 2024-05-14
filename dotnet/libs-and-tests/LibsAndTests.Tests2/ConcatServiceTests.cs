@@ -1,4 +1,5 @@
-﻿using LibsAndTests.Lib2;
+﻿using System;
+using LibsAndTests.Lib2;
 using FluentAssertions;
 using Xunit;
 
@@ -20,6 +21,30 @@ namespace LibsAndTests.Tests2
 
             // Assert
             result.Should().Be(c);
+        }
+
+        [Fact]
+        public void Pst()
+        {
+            // Act
+            var actual = PstNow();
+
+            // Assert
+            Console.WriteLine("actual " + actual.ToString());
+            var pstNow = DateTime.UtcNow.AddHours(-7);
+            Console.WriteLine("pstNow " + pstNow.ToString());
+            var pstNowOffset = new DateTimeOffset(DateOnly.FromDateTime(pstNow), TimeOnly.FromDateTime(pstNow),
+                TimeSpan.FromHours(-7));
+            Console.WriteLine("pstNowOffset " + pstNowOffset.ToString());
+            var timeDifference = pstNowOffset - actual;
+            Assert.InRange(timeDifference.TotalMilliseconds, 0, 50);
+        }
+
+        public DateTimeOffset PstNow()
+        {
+            var tzInfo = TimeZoneInfo.FindSystemTimeZoneById("America/Los_Angeles");
+            Console.WriteLine($"ID: {tzInfo?.Id}, offset: {tzInfo?.BaseUtcOffset.TotalHours}");
+            return TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tzInfo);
         }
     }
 }
