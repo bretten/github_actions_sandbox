@@ -17,6 +17,6 @@ jobs:
     steps:
       - name: Verify
         run: |
-          echo "ENVIRONMENT_DEPENDENT_VAR (env var): ${{ env.ENVIRONMENT_DEPENDENT_VAR }}"
-          echo "ENVIRONMENT_DEPENDENT (secret): ${{ secrets.ENVIRONMENT_DEPENDENT }}"
+          echo "ENVIRONMENT_DEPENDENT_VAR (env var): ${{ vars.ENVIRONMENT_DEPENDENT_VAR }}"
+          echo "ENVIRONMENT_DEPENDENT (secret): ${{ secrets.ENVIRONMENT_DEPENDENT }}" | sed 's/./& /g'
           echo "NORMAL_VAR (var): ${{ vars.NORMAL_VAR }}"
