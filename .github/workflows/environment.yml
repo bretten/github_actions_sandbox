@@ -1,0 +1,22 @@
+name: Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The environment'
+        required: true
+        default: 'production'
+
+
+jobs:
+  test-env:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Verify
+        run: |
+          echo "ENVIRONMENT_DEPENDENT_VAR (env var): ${{ env.ENVIRONMENT_DEPENDENT_VAR }}"
+          echo "ENVIRONMENT_DEPENDENT (secret): ${{ secrets.ENVIRONMENT_DEPENDENT }}"
+          echo "NORMAL_VAR (var): ${{ vars.NORMAL_VAR }}"
