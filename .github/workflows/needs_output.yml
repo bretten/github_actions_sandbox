@@ -1,0 +1,35 @@
+name: Needs output
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag'
+        required: true
+        default: 'some_tag'
+
+jobs:
+  job1:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      tag_name: ${{ steps.set-tag.outputs.TAG_NAME }}
+
+    steps:
+      - name: Set value
+        id: set-tag
+        run: |
+          TAG_NAME=${{ vars.tag_name }}
+
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo value
+        run: |
+          # Write the output from job1
+          echo ${{ needs.job1.outputs.tag_name }}
