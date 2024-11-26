@@ -14,14 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tag_name: ${{ steps.set-tag.outputs.TAG_NAME }}
+      tag_name: ${{ steps.set-tag.outputs.tag_name }}
 
     steps:
       - name: Set value
         id: set-tag
         run: |
-
-          echo "TAG_NAME=${{ inputs.tag_name }}" >> $GITHUB_OUTPUT
+          echo "TAG_NAME=${{ inputs.tag_name }}" >> $GITHUB_ENV
+          echo "tag_name=${{ inputs.tag_name }}" >> $GITHUB_OUTPUT
+      - name: Echo env var
+        run: |
+          echo "ENV VAR = ${{ env.TAG_NAME }}"
 
   job2:
     needs: job1
