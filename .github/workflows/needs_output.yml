@@ -20,7 +20,7 @@ jobs:
       - name: Set value
         id: set-tag
         run: |
-          TAG_NAME=${{ vars.tag_name }}
+          TAG_NAME=${{ inputs.tag_name }}
 
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
 
