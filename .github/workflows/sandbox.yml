@@ -12,5 +12,5 @@ jobs:
         run: |
           VERSION="0.140.2"
           wget https://github.com/gohugoio/hugo/releases/download/v$VERSION/hugo_$VERSION_linux-amd64.deb
-          sudo dpkg -i ugo_$VERSION_linux-amd64.deb
+          sudo dpkg -i hugo_$VERSION_linux-amd64.deb
           hugo version
