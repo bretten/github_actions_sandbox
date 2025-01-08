@@ -13,5 +13,5 @@ jobs:
           VERSION="0.140.2"
           echo "VERSION=$VERSION"
           wget "https://github.com/gohugoio/hugo/releases/download/v$VERSION/hugo_${VERSION}_linux-amd64.deb"
-          sudo dpkg -i "hugo_$VERSION_linux-amd64.deb"
+          sudo dpkg -i "hugo_${VERSION}_linux-amd64.deb"
           hugo version
