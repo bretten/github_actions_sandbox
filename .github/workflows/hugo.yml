@@ -1,0 +1,16 @@
+name: Sandbox
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Hugo
+        run: |
+          VERSION="0.140.2"
+          wget https://github.com/gohugoio/hugo/releases/download/v$VERSION/hugo_$VERSION_linux-amd64.deb
+          sudo dpkg -i ugo_$VERSION_linux-amd64.deb
+          hugo version
