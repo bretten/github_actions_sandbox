@@ -1,0 +1,23 @@
+name: Release
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The ref (tag, branch or commit) to release'
+        required: false
+        default: 'main'
+
+jobs:
+  publish:
+
+    runs-on: ubuntu-latest
+    if: !github.event.release.prerelease
+
+    steps:
+      - name: Set the container image tag name
+        id: set-tag
+        run: |
+          Echo "released!"
