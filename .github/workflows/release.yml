@@ -14,7 +14,7 @@ jobs:
   publish:
 
     runs-on: ubuntu-latest
-    if: !github.event.release.prerelease
+    if: ${{ github.event.release.prerelease == false }}
 
     steps:
       - name: Set the container image tag name
