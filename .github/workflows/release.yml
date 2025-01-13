@@ -20,4 +20,4 @@ jobs:
       - name: Set the container image tag name
         id: set-tag
         run: |
-          Echo "released!"
+          echo "released!"
