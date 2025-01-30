@@ -44,7 +44,7 @@ jobs:
       - name: Build and publish - Console App
         uses: docker/build-push-action@v6.9.0
         with:
-          context: .
+          context: ./dotnet/console-app/ConsoleApp/
           file: ./dotnet/console-app/ConsoleApp/Dockerfile
           push: true
           tags: |
