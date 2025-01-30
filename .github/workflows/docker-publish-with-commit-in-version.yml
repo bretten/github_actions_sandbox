@@ -41,10 +41,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Set last commit checksum
-        id: commit-checksum
-        run: echo "COMMIT_CHECKSUM=$(git rev-parse --short HEAD)" >> "$COMMIT_CHECKSUM"
-          
       - name: Build and publish - Console App
         uses: docker/build-push-action@v6.9.0
         with:
@@ -52,7 +48,7 @@ jobs:
           file: ./dotnet/console-app/ConsoleApp/Dockerfile
           push: true
           build-args: |
-            COMMIT_CHECKSUM=${{ env.COMMIT_CHECKSUM }}"
+            COMMIT_CHECKSUM=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app:${{ env.TAG_NAME }}
           labels: ${{ steps.meta.outputs.labels }}
