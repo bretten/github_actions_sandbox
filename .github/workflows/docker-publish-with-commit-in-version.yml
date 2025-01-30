@@ -1,0 +1,60 @@
+﻿name: Docker - Publish .NET with commit sha in version
+
+on:
+  workflow_dispatch:
+    inputs:
+      workingdir:
+        description: 'Working directory for the Dockerfile'
+        required: true
+        default: './dotnet/console-app/ConsoleApp'
+      branch:
+        description: "The branch used to build the container images"
+        required: false
+        default: "main"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  TAG_NAME: main
+
+jobs:
+  build_and_push:
+
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read # For checking out
+      packages: write # For publishing the container images
+    
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.workingdir }}
+
+    steps:
+      - name: Set Branch ENV var
+        run: echo "BRANCH=${{ github.event.inputs.branch || 'main' }}" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+
+      - name: Login to GitHub container registry
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata for labeling the published images
+        id: metadata
+        uses: docker/metadata-action@v5.5.1
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          
+      - name: Build and publish - Console App
+        uses: docker/build-push-action@v6.9.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app:${{ env.TAG_NAME }}
+          labels: ${{ steps.meta.outputs.labels }}
