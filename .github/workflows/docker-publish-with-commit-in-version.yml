@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v6.9.0
         with:
           context: .
-          file: ./dotnet/console-app/ConsoleAppSecondsCountdown/Dockerfile
+          file: ./dotnet/console-app/ConsoleApp/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app:${{ env.TAG_NAME }}
