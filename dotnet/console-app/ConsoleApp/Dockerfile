@@ -10,16 +10,17 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 # csproj files are used to restore NuGet packges. Copy only the csproj file and restore the NuGet packages
 # This way if the csproj file has not changed, Docker can use cached versions of the subsequent layers/commands
-COPY ConsoleApp.csproj ./
+COPY ../Directory.Build.props ./
+COPY ConsoleApp/ConsoleApp.csproj ./
 RUN dotnet restore
 
 # Copy the whole project dir and build
 COPY . ./
-RUN dotnet build ConsoleApp.csproj -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build ConsoleApp/ConsoleApp.csproj -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish ConsoleApp.csproj -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish ConsoleApp/ConsoleApp.csproj -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Start the app
 FROM base AS final

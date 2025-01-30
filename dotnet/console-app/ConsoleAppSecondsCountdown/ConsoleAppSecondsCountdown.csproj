@@ -3,6 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
+        <!--VersionSuffix>SUFFIX-COUNTDOWN-$(BUILD_ID)-BLD</VersionSuffix--> <!-- Overrides Directory.Build.props -->
     </PropertyGroup>
 
 </Project>

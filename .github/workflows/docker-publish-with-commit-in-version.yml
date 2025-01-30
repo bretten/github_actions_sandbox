@@ -44,11 +44,23 @@ jobs:
       - name: Build and publish - Console App
         uses: docker/build-push-action@v6.9.0
         with:
-          context: ./dotnet/console-app/ConsoleApp/
+          context: ./dotnet/console-app/
           file: ./dotnet/console-app/ConsoleApp/Dockerfile
           push: true
           build-args: |
             BUILD_ID=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app:${{ env.TAG_NAME }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and publish - Console App Countdown
+        uses: docker/build-push-action@v6.9.0
+        with:
+          context: ./dotnet/console-app/
+          file: ./dotnet/console-app/ConsoleAppSecondsCountdown/Dockerfile
+          push: true
+          build-args: |
+            BUILD_ID=${{ github.sha }}
+          tags: |
+            ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app-countdown:${{ env.TAG_NAME }}
           labels: ${{ steps.meta.outputs.labels }}

@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup>
+        <AssemblyVersion>4.5.6</AssemblyVersion>
+        <ApplicationVersion>22.2</ApplicationVersion>
+        <ProductVersion>233.4</ProductVersion>
+        <FileVersion>88.1</FileVersion>
+        <VersionPrefix>12</VersionPrefix>
+        <BUILD_ID Condition="'$(BUILD_ID)' == ''">no.build.checksum</BUILD_ID>
+        <VersionSuffix>SUFFIX-$(BUILD_ID)-BUILDPROPS</VersionSuffix>
+    </PropertyGroup>
+</Project>
