@@ -48,7 +48,7 @@ jobs:
           file: ./dotnet/console-app/ConsoleApp/Dockerfile
           push: true
           build-args: |
-            COMMIT_CHECKSUM=${{ github.sha }}
+            BUILD_ID=${{ github.sha }}
           tags: |
             ghcr.io/${{ github.actor }}/${{ env.IMAGE_NAME }}/console-app:${{ env.TAG_NAME }}
           labels: ${{ steps.meta.outputs.labels }}
